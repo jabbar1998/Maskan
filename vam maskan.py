@@ -78,29 +78,19 @@ class Vam:
         self.click_element(By.XPATH, '/html/body/div/div/div/main/div/div/div/div/div[1]/div/div[2]/div/div[3]')
         time.sleep(3)
         self.click_element(By.XPATH, '//*[@id="app"]/div/main/div/div/div/div/div[2]/div/div[2]/div/div[1]/a/div[2]/a')
-        # self.click_element(By.XPATH, '//*[@id="app"]/div/main/div/div/div/div/div[2]/a[2]')
         while True:
             try:
-                # کلیک بر روی لینک
                 self.click_element(By.XPATH, '//*[@id="app"]/div/main/div/div/div/div/div[2]/a[2]')
                 time.sleep(1)
-
-                # کلیک بر روی عنصر فرم
                 self.click_element(By.XPATH,
                                    '//*[@id="app"]/div[2]/div/div/div[2]/form/div[3]/div/div/div/div[1]/div[1]/div/div/div[1]/div[1]/div[2]/div')
                 time.sleep(5)
-
-                # پیدا کردن و کلیک بر روی آیتم لیست
                 wait = WebDriverWait(self.driver, 10)
                 element = wait.until(EC.presence_of_element_located((By.XPATH, "//div[contains(text(), 'سپه')]")))
-
-                # اسکرول به عنصر
                 self.driver.execute_script("arguments[0].scrollIntoView(true);", element)
                 element = wait.until(EC.element_to_be_clickable((By.XPATH, "//div[contains(text(), 'سپه')]")))
                 element.click()
                 time.sleep(3)
-
-                # بررسی وجود عنصر مورد نظر
                 xpath_to_check = '//*[@id="app"]/div[2]/div/div/div[2]/form/div[3]/div/div/div/div[2]/div/div'
                 if self.element_exists(By.XPATH, xpath_to_check):
                     print("Bank Close !!!!!!!!!! ")
